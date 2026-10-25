@@ -1,27 +1,30 @@
 #include <stdio.h>
-int main(void) {
-int day, month, year, maxDays;
-printf("Enter day month year: ");
-scanf("%d%d%d", &day, &month, &year);
-if (month < 1 || month > 12 || year <= 0) {
-printf("Invalid Date");
-return 0;
+int printPrimeSum(int);
+int main(){
+    int num;
+   printf("Enter upper limit : ");
+   scanf("%d",&num);
+
+   int sum= printPrimeSum(num);
+   printf("Sum of prime numbers is %d",sum);
+    return 0;
 }
-if (month == 2) {
-if (year % 400 == 0 ||
-(year % 4 == 0 && year % 100 != 0))
-maxDays = 29;
-else
-maxDays = 28;
-} else if (month == 4 || month == 6 ||
-month == 9 || month == 11) {
-maxDays = 30;
-} else {
-maxDays = 31;
-}
-if (day >= 1 && day <= maxDays)
-printf("Valid Date");
-else
-printf("Invalid Date");
-return 0;
+
+int printPrimeSum(int n) {
+    if (n < 1) return 0;
+    
+    int sum = 1;
+    for (int i = 2; i <= n; i++) {
+        int isPrime = 1;
+        for (int j = 2; j * j <= i; j++) {
+            if (i % j == 0) {
+                isPrime = 0;
+                break;
+            }
+        }
+        if (isPrime == 1) {
+            sum += i;
+        }
+    }
+    return sum;
 }

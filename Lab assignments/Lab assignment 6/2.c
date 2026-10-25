@@ -1,23 +1,25 @@
 #include <stdio.h>
+int sumOfDigits(int);
 int main(){
-    int month,year;
-    printf("Enter month number and year : ");
-    scanf("%d %d",&month,&year);
-
-    switch(month){
-        case 1: case 3: case 5: case 7:
-        case 8: case 10: case 12:
-             printf("31 days \n");
-             break;
-        case 4: case 6: case 9: case 11:
-             printf("30 days \n");
-
-        case 2:  if(year%400==0 || (year%4==0 && year%100 !=0))
-                 printf("29 days \n");
-                 else
-                 printf("28 days \n");
-        default:  printf("Invalid month \n");
+    int num;
+    printf("Enter a number : ");
+    scanf("%d",&num);
+    int sum =sumOfDigits(num);
+    printf("Sum of digits is %d \n",sum);
+    if(sum%2==0){
+        printf("sum is EVEN \n");
+    }else{
+        printf("sum is ODD \n");
     }
-
     return 0;
+}
+
+int sumOfDigits(int n){
+    int sum;
+    while(n!=0){
+    int ld = n%10;
+    sum+=ld;
+    n=n/10;
+    }
+    return sum;
 }
